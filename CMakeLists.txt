@@ -2,6 +2,8 @@
 set(CMAKE_CXX_STANDARD 20)
 project ("GameEngineProj")
 
+set(PROJECT_SOURCE_DIR "${PROJECT_SOURCE_DIR}/src/")
+
 set(FETCHCONTENT_BASE_DIR ${PROJECT_SOURCE_DIR}/deps/)
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
@@ -23,7 +25,7 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(glfw glew)
 
-file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/src/*.cpp" "${PROJECT_SOURCE_DIR}/src/*.h")
+file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/*.cpp" "${PROJECT_SOURCE_DIR}/*.h" "${PROJECT_SOURCE_DIR}/*.hpp")
 
 include_directories(${PROJECT_SOURCE_DIR}/deps/glfw-src/include/GLFW/ ${CMAKE_CURRENT_LIST_DIR}/src/)
 
