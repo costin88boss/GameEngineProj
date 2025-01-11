@@ -32,8 +32,8 @@ jobs:
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
-    - if: runner.os == 'ubuntu-latest'
-      run: "sudo apt install libwayland-dev libxkbcommon-dev xorg-dev"
+    - if: runner.os == "ubuntu-latest"
+      run: "apt install libwayland-dev libxkbcommon-dev xorg-dev"
       
 
     - name: Configure CMake
