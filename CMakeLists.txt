@@ -23,10 +23,12 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(glfw glew)
 
-set(SOURCE_FILES "src/GameEngineProj.cpp" "src/GameEngineProj.h")
-include_directories(${PROJECT_SOURCE_DIR}/deps/glfw-src/include/GLFW/)
+file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/src/*.cpp" "${PROJECT_SOURCE_DIR}/src/*.h")
 
-add_executable (GameEngineProj ${SOURCE_FILES})
+include_directories(${PROJECT_SOURCE_DIR}/deps/glfw-src/include/GLFW/ ${CMAKE_CURRENT_LIST_DIR}/src/)
+
+add_executable (GameEngineProj)
+target_sources(GameEngineProj PRIVATE ${SOURCE_FILES})
 add_compile_definitions(GLEW_STATIC)
 
 # macOS
