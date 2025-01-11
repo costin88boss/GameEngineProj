@@ -14,4 +14,7 @@ CMakeUserPresets.json
 .vs
 out
 
-glfw
+.DS_STORE
+.idea
+cmake-build-debug
+deps
