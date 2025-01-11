@@ -34,7 +34,7 @@ jobs:
 
     - if: matrix.os == 'ubuntu-latest'
       run: |
-        apt install libwayland-dev libxkbcommon-dev xorg-dev
+        sudo apt install libwayland-dev libxkbcommon-dev xorg-dev
       
 
     - name: Configure CMake
