@@ -1,6 +1,6 @@
 ﻿cmake_minimum_required (VERSION 3.25)
-set(CMAKE_CXX_STANDARD 20)
 project ("GameEngineProj")
+set(CMAKE_CXX_STANDARD 20)
 
 set(PROJECT_SOURCE_DIR "${PROJECT_SOURCE_DIR}/src/")
 
@@ -25,9 +25,9 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(glfw glew)
 
-file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/*.cpp" "${PROJECT_SOURCE_DIR}/*.h" "${PROJECT_SOURCE_DIR}/*.hpp")
+file(GLOB_RECURSE SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp ${PROJECT_SOURCE_DIR}/*.h ${PROJECT_SOURCE_DIR}/*.hpp)
 
-include_directories(${PROJECT_SOURCE_DIR}/deps/glfw-src/include/GLFW/ ${CMAKE_CURRENT_LIST_DIR}/src/)
+include_directories(${PROJECT_SOURCE_DIR}/deps/glfw-src/include/)
 
 add_executable (GameEngineProj)
 target_sources(GameEngineProj PRIVATE ${SOURCE_FILES})
