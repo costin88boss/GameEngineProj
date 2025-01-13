@@ -1,27 +1,31 @@
 ﻿#include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <iostream>
+#include "Debug.hpp"
 #include "Time.hpp"
 
 int main() {
   Time time{};
-  time.StartTimer("Lifetime");
+  time.startTimer("Lifetime");
+  Debug::logLevel = ALL;
 
-  if (!glfwInit())
-    throw std::runtime_error("FATAL: Failed to initialize GLFW3");
+  if (!glfwInit()) {
+    Debug::log(FATAL, "Failed to initialize GLFW");
+    return 1;
+  }
 
   GLFWwindow* window =
       glfwCreateWindow(720, 480, "Hello World", nullptr, nullptr);
 
   if (!window) {
     glfwTerminate();
-    throw std::runtime_error("FATAL: Failed to create GLFW3 window");
+    Debug::log(FATAL, "Failed to create GLFW window");
+    return 1;
   }
 
   glfwMakeContextCurrent(window);
 
   while (!glfwWindowShouldClose(window)) {
-    time.StartFrameTimer();
+    time.startFrameTimer();
 
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -36,13 +40,15 @@ int main() {
     glfwSwapBuffers(window);
     glfwPollEvents();
 
-    time.EndFrameTimer();
-    std::cout << "Frame Time:" << time.GetDeltaTime()
-              << "s, FPS: " << 1 / time.GetDeltaTime() << '\n';
+    std::string title =
+        "FPS: " + std::to_string(static_cast<int>(time.getFramesPerSecond()));
+    glfwSetWindowTitle(window, title.c_str());
   }
 
   glfwTerminate();
 
-  std::cout << "Program lasted " << time.GetTimerDuration("Lifetime") << "s\n";
-  time.StopTimer("Lifetime");
+  Debug::log(INFO, "Program lasted ", time.getTimerDuration("Lifetime"), 's');
+  time.stopTimer("Lifetime");
+
+  return 0;
 }

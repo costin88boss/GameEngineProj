@@ -25,9 +25,9 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(glfw glew)
 
-file(GLOB_RECURSE SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp ${PROJECT_SOURCE_DIR}/*.h ${PROJECT_SOURCE_DIR}/*.hpp)
+file(GLOB_RECURSE SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp ${PROJECT_SOURCE_DIR}/*.hpp)
 
-include_directories(${PROJECT_SOURCE_DIR}/deps/glfw-src/include/)
+include_directories(${PROJECT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/deps/glfw-src/include/)
 
 add_executable (GameEngineProj)
 target_sources(GameEngineProj PRIVATE ${SOURCE_FILES})
