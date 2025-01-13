@@ -1,7 +1,7 @@
 ﻿#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include "Time.h"
+#include "Time.hpp"
 
 int main() {
   Time time{};
